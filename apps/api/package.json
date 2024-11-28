@@ -28,4 +28,5 @@
     "prisma": "^5.7.1",
     "tsconfig-paths": "^4.2.0"
   }
+  
 }
