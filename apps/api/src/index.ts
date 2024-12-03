@@ -1,10 +1,21 @@
 import App from './app';
+import { PrismaClient } from '@prisma/client';
 
-const main = () => {
-  // init db here
+const prisma = new PrismaClient();
 
-  const app = new App();
-  app.start();
+const main = async () => {
+  try {
+    // Test database connection
+    await prisma.$connect();
+    console.log('Database connected successfully.');
+
+    const app = new App();
+    app.start();
+  } catch (error) {
+    console.error('Database connection error:', error);
+  } finally {
+    await prisma.$disconnect();
+  }
 };
 
 main();
