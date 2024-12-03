@@ -1,15 +1,7 @@
-import express, {
-  json,
-  urlencoded,
-  Express,
-  Request,
-  Response,
-  NextFunction,
-  Router,
-} from 'express';
+import express, { json, urlencoded, Express, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import { PORT } from './config';
-import { SampleRouter } from './routers/sample.router';
+import { AuthRouter } from './routers/auth.router'; // Your AuthRouter import
 
 export default class App {
   private app: Express;
@@ -28,7 +20,6 @@ export default class App {
   }
 
   private handleError(): void {
-    // not found
     this.app.use((req: Request, res: Response, next: NextFunction) => {
       if (req.path.includes('/api/')) {
         res.status(404).send('Not found !');
@@ -37,27 +28,24 @@ export default class App {
       }
     });
 
-    // error
-    this.app.use(
-      (err: Error, req: Request, res: Response, next: NextFunction) => {
-        if (req.path.includes('/api/')) {
-          console.error('Error : ', err.stack);
-          res.status(500).send('Error !');
-        } else {
-          next();
-        }
-      },
-    );
+    this.app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+      if (req.path.includes('/api/')) {
+        console.error('Error : ', err.stack);
+        res.status(500).send('Error !');
+      } else {
+        next();
+      }
+    });
   }
 
   private routes(): void {
-    const sampleRouter = new SampleRouter();
+    // Use the AuthRouter for routes under /api/auth
+    const authRouter = new AuthRouter();
+    this.app.use('/api/auth', authRouter.getRouter());
 
-    this.app.get('/api', (req: Request, res: Response) => {
-      res.send(`Hello, Purwadhika Student API!`);
-    });
-
-    this.app.use('/api/samples', sampleRouter.getRouter());
+    // You can add other routers here as needed, for example:
+    // const sampleRouter = new SampleRouter();
+    // this.app.use('/api/sample', sampleRouter.getRouter());
   }
 
   public start(): void {
