@@ -77,7 +77,7 @@ export default function SearchEvents() {
   );
 
   return (
-    <div>
+    <div className="grid grid-rows-[auto_1fr_auto] min-h-screen">
       <div className="w-full mx-auto">
         {/* Unified search and filter container */}
         <section className="bg-gray-700 mx-auto p-6 sticky text-sm top-16 z-40">
@@ -131,10 +131,10 @@ export default function SearchEvents() {
         </div>
         </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4 mb-10 mt-24">
           {displayedEvents.map((event) => (
-            <div key={event.id} className="border p-4 rounded shadow-sm">
-              <h2 className="text-xl font-semibold">{event.name}</h2>
+            <div key={event.id} className="bg-gray-200 border p-4 rounded shadow-sm">
+              <h2 className="text-base font-semibold">{event.name}</h2>
               <p>{new Date(event.date).toLocaleDateString()}</p>
               <p>Location: {event.location}</p>
               <p>Available Seats: {event.availableSeats}</p>

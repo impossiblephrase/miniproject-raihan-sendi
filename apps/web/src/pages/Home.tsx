@@ -5,6 +5,7 @@ import Categories from '@/components/Categories';
 import FeaturedEvents from '@/components/FeaturedEvents';
 import Hero from '@/components/Hero';
 import Link from 'next/link';
+import AboutShort from '@/components/AboutShort';
 
 type EventType = {
   id: number;
@@ -14,6 +15,8 @@ type EventType = {
   category: string;
   availableSeats: number;
 };
+
+
 
 const mockEvents: EventType[] = [
   // Mock data for events; replace with actual data fetching in production
@@ -87,7 +90,7 @@ export default function HomeView() {
         {/* Unified search and filter container */}
         <section className="bg-gray-700 mx-auto p-6 sticky text-sm top-16 z-40">
         <div className="flex flex-col md:flex-row">
-          <div className="flex w-full md:px-44 items-center gap-1">
+          <div className="flex w-full md:px-56 items-center gap-1">
             <input
               type="text"
               placeholder="Search events..."
@@ -132,9 +135,17 @@ export default function HomeView() {
             >
               Search
             </button>
+            <Link
+              href="/create-event"
+              className="hidden md:block p-2 md:px-8 h-9 ml-20 bg-cyan-700 hover:bg-cyan-500 text-white items-center font-medium rounded-lg shadow-md transition"
+              >
+              Create Event
+            </Link>
           </div>
         </div>
         </section>
+
+        <AboutShort />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm mt-6 px-6">
           {displayedEvents.map((event) => (
@@ -151,11 +162,11 @@ export default function HomeView() {
         <div className="flex justify-center mx-auto mt-6">
             <Link
               href="/search-events"
-              className="text-center bg-gray-700 text-white px-6 text-sm py-4 rounded-md border hover:border-gray-700 hover:bg-gray-400"
-            >
+              className="px-6 py-3 bg-cyan-700 hover:bg-cyan-500 text-white font-medium rounded-lg shadow-md transition"
+              >
               See More Events
             </Link>
-          </div>
+        </div>
 
         <Categories />
         <FeaturedEvents />
