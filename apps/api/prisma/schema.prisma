@@ -122,6 +122,7 @@ model Users {
   username String @unique // Username for login.
   password String
   referral_code String? @unique // '?' to allow null for organizer.
+  pointExpirations  Point_Expiration[] // Reverse relation to the Point_Expiration table.
   role_id Int @default(1)
   total_point Int @default(0)
   createdAt DateTime @default(now())
@@ -133,6 +134,14 @@ model Users {
   vouchers Vouchers[]
   tickets Tickets[]
   points Points[]
+}
+
+model Point_Expiration {
+  id         Int      @id @default(autoincrement())
+  user_id    Int
+  point      Decimal  @db.Decimal(10, 0)
+  expired_at DateTime @db.DateTime
+  users      Users    @relation(fields: [user_id], references: [id]) // Foreign key relation to the Users table.
 }
 
 model Roles {
