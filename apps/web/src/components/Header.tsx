@@ -100,7 +100,7 @@ export default function Header() {
           <Link href="/concerts" className="block text-center bg-transparent text-white py-2 px-2 rounded-md hover:bg-gray-500 focus:outline-non">
             Concerts
           </Link>
-          <Link href="/events" className="block text-center bg-transparent text-white py-2 px-2 rounded-md hover:bg-gray-500 focus:outline-non">
+          <Link href="/search-events" className="block text-center bg-transparent text-white py-2 px-2 rounded-md hover:bg-gray-500 focus:outline-non">
             Events
           </Link>
 
@@ -192,7 +192,7 @@ export default function Header() {
         
           <div className="text-sm">
             <h1 className="shadow-md p-3 shadow-gray-600">NAVIGATION</h1> <br />
-            <Link href="/events" className="block bg-transparent p-3 w-full text-left text-white rounded-md hover:bg-gray-500 focus:outline-none">
+            <Link href="/search-events" className="block bg-transparent p-3 w-full text-left text-white rounded-md hover:bg-gray-500 focus:outline-none">
               Events
             </Link>
             <Link href="/create-event" className="block bg-transparent p-3 w-full text-left text-white rounded-md hover:bg-gray-500 focus:outline-none">
