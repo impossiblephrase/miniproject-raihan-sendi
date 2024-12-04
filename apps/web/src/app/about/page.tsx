@@ -1,10 +1,9 @@
-import HomeView from "@/pages/Home";
-
+import About from "@/pages/About";
 
 export default function Home() {
   return (
     <>
-      <HomeView />
+      <About />
     </>
   );
 }
